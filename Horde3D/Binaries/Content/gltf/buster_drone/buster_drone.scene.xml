@@ -1,0 +1,143 @@
+<Model name="buster_drone" geometry="gltf/buster_drone/buster_drone.geo">
+	<Joint name="Sketchfab_model" rx="-90" ry="0" rz="-0" sx="0.0130818402" sy="0.0130818402" sz="0.0130818402" jointIndex="0">
+		<Joint name="BusterDrone.fbx" rx="90" ry="0" rz="-0" jointIndex="0">
+			<Joint name="Object_2" jointIndex="0">
+				<Joint name="RootNode" jointIndex="0">
+					<Joint name="Env" jointIndex="0">
+						<Joint name="Scheibe" tx="0" ty="-99" tz="6.12323379e-15" rx="90" ry="0" rz="-90" jointIndex="0">
+							<Mesh name="Scheibe_Boden_0" material="gltf/buster_drone/buster_drone_Boden.material.xml" batchStart="0" batchCount="18" vertRStart="0" vertREnd="6" />
+						</Joint>
+						<Joint name="Himmel" jointIndex="0" />
+					</Joint>
+					<Joint name="Drone_Controller" jointIndex="0">
+						<Joint name="Turbine_Controller" tx="0" ty="-100" tz="-5" jointIndex="0">
+							<Joint name="Turbine_R" tx="12.2447996" ty="0" tz="-1.00702" rx="90" ry="0" rz="-0" jointIndex="0" />
+							<Joint name="Turbine_L" tx="-12.2447996" ty="0" tz="-1.00702" rx="90" ry="0" rz="-0" jointIndex="0" />
+						</Joint>
+						<Joint name="U_MassPoint" tx="0" ty="0.118567906" tz="-12.9100466" rx="75.6625214" ry="0" rz="0" jointIndex="0">
+							<Joint name="Eye_Controller" tx="0" ty="143.072876" tz="58.6367302" rx="1.98610127" ry="0" rz="0" jointIndex="0">
+								<Joint name="Eye_Pupil" rx="-90" ry="0" rz="-0" jointIndex="0" />
+							</Joint>
+							<Joint name="D_MassPoint" tx="0" ty="-1.77635684e-15" tz="77.5" jointIndex="0">
+								<Joint name="Drone_Body" tx="0" ty="0" tz="-37.5" rx="-90" ry="0" rz="-0" jointIndex="0">
+									<Mesh name="Drone_Body_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="18" batchCount="6624" vertRStart="7" vertREnd="1604" />
+									<Joint name="Drone_leg_F" tx="0" ty="-38.6808014" tz="20.0119495" jointIndex="0">
+										<Mesh name="Drone_leg_F_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="6642" batchCount="192" vertRStart="1605" vertREnd="1664" />
+										<Joint name="F_P1_G" tx="0.00663001835" ty="-5.51050138" tz="-0.0927505344" rx="-1.53504217e-12" ry="89.9999695" rz="-4.85314136e-20" jointIndex="0">
+											<Mesh name="F_P1_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="6834" batchCount="2736" vertRStart="1665" vertREnd="2333" />
+											<Joint name="F_P2" tx="0" ty="-4.08075393e-05" tz="0" rx="85.0000153" ry="90" rz="0" jointIndex="0">
+												<Mesh name="F_P2_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="9570" batchCount="4872" vertRStart="2334" vertREnd="3846" />
+												<Joint name="F_P3_G" tx="7.68858881e-05" ty="-22.9158936" tz="0.0267669894" jointIndex="0">
+													<Mesh name="F_P3_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="14442" batchCount="2736" vertRStart="3847" vertREnd="4515" />
+													<Joint name="F_P4" rx="70.0000076" ry="1.22457884e-13" rz="-180" jointIndex="0">
+														<Mesh name="F_P4_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="17178" batchCount="4128" vertRStart="4516" vertREnd="5705" />
+														<Joint name="F_P5_M" tx="-0.0157466829" ty="-11.2827597" tz="0.0817173496" jointIndex="0">
+															<Mesh name="F_P5_M_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="21306" batchCount="192" vertRStart="5706" vertREnd="5765" />
+															<Joint name="F_P6_G" tx="0.0054222364" ty="-9.32616234" tz="-0.0821794271" jointIndex="0">
+																<Mesh name="F_P6_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="21498" batchCount="2736" vertRStart="5766" vertREnd="6434" />
+																<Joint name="F_P7" tx="4.33680869e-19" ty="3.38861319e-05" tz="1.40360953e-05" rx="72.1962433" ry="-1.07890395e-20" rz="-4.96015623e-21" jointIndex="0">
+																	<Mesh name="F_P7_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="24234" batchCount="3792" vertRStart="6435" vertREnd="7563" />
+																</Joint>
+															</Joint>
+														</Joint>
+													</Joint>
+												</Joint>
+											</Joint>
+										</Joint>
+									</Joint>
+									<Joint name="Drone_Gen_R" tx="-26.7801991" ty="-31.1090698" tz="-0.748199999" rx="31.0000057" ry="-90" rz="-1.99208171e-06" jointIndex="0">
+										<Mesh name="0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="28026" batchCount="858" vertRStart="7564" vertREnd="7773" />
+										<Joint name="Drone_Panel_R" tx="0.678500295" ty="-0.375061125" tz="4.95786619" jointIndex="0">
+											<Mesh name="Drone_Panel_R_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="28884" batchCount="684" vertRStart="7774" vertREnd="7955" />
+											<Joint name="Drone_leg_R" tx="-12.8869505" ty="-9.61079979" tz="-0.729290247" rx="-0" ry="90" rz="-70.9999924" jointIndex="0">
+												<Mesh name="Drone_leg_R_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="29568" batchCount="192" vertRStart="7956" vertREnd="8015" />
+												<Joint name="R_P1_G" tx="2.41547918" ty="-4.84229088" tz="-0.00665213866" rx="-2.26043532e-14" ry="105.000008" rz="-2.15725756e-14" jointIndex="0">
+													<Mesh name="R_P1_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="29760" batchCount="2736" vertRStart="8016" vertREnd="8684" />
+													<Joint name="R_P2" rx="76.4554138" ry="4.27885673e-14" rz="4.07411057e-14" jointIndex="0">
+														<Mesh name="R_P2_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="32496" batchCount="4872" vertRStart="8685" vertREnd="10197" />
+														<Joint name="R_P3_G" tx="0.00268976111" ty="-22.9163837" tz="0.0269327518" jointIndex="0">
+															<Mesh name="R_P3_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="37368" batchCount="2736" vertRStart="10198" vertREnd="10866" />
+															<Joint name="R_P4" tx="0.00490493607" ty="0.00297115324" tz="-0.0014322279" rx="74.1818466" ry="-1.36346326e-14" rz="180" jointIndex="0">
+																<Mesh name="R_P4_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="40104" batchCount="4128" vertRStart="10867" vertREnd="12056" />
+																<Joint name="R_P5_M" tx="0.0107833594" ty="-11.285902" tz="0.0822311342" rx="0.000365153654" ry="-1.59026222e-15" rz="2.38541609e-15" jointIndex="0">
+																	<Mesh name="R_P5_M_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="44232" batchCount="192" vertRStart="12057" vertREnd="12116" />
+																	<Joint name="R_P6_G" tx="-0.00579371396" ty="-9.32601738" tz="-0.0819970593" jointIndex="0">
+																		<Mesh name="R_P6_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="44424" batchCount="2736" vertRStart="12117" vertREnd="12785" />
+																		<Joint name="R_P7" tx="-1.15463195e-13" ty="-2.19201047e-06" tz="-9.07960441e-07" rx="80.8312149" ry="-1.82893873e-05" rz="-2.20918519e-05" jointIndex="0">
+																			<Mesh name="R_P7_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="47160" batchCount="3792" vertRStart="12786" vertREnd="13914" />
+																		</Joint>
+																	</Joint>
+																</Joint>
+															</Joint>
+														</Joint>
+													</Joint>
+												</Joint>
+											</Joint>
+										</Joint>
+									</Joint>
+									<Joint name="Drone_Gen_L" tx="26.7801991" ty="-31.1090698" tz="-0.748199999" rx="31.0000057" ry="90" rz="1.99208171e-06" jointIndex="0">
+										<Mesh name="Drone_Gen_L_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="50952" batchCount="858" vertRStart="13915" vertREnd="14124" />
+										<Joint name="Drone_Panel_L" tx="-0.678497612" ty="-0.377166092" tz="4.95770645" rx="0.0243259445" ry="3.14806562e-06" rz="-9.54166521e-15" jointIndex="0">
+											<Mesh name="Drone_Panel_L_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="51810" batchCount="684" vertRStart="14125" vertREnd="14306" />
+											<Joint name="Drone_leg_L" tx="12.8869524" ty="-9.61079693" tz="-0.729290128" rx="3.41509462e-06" ry="-90" rz="71" jointIndex="0">
+												<Mesh name="Drone_leg_L_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="52494" batchCount="192" vertRStart="14307" vertREnd="14366" />
+												<Joint name="L_P1_G" tx="-2.4154799" ty="-4.8422904" tz="-0.00664042681" rx="7.70727205e-14" ry="-99.1660309" rz="9.22411764e-15" jointIndex="0">
+													<Mesh name="L_P1_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="52686" batchCount="2736" vertRStart="14367" vertREnd="15035" />
+													<Joint name="L_P2" rx="73.5217209" ry="-2.58213657e-14" rz="-3.36386497e-14" jointIndex="0">
+														<Mesh name="L_P2_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="55422" batchCount="4872" vertRStart="15036" vertREnd="16492" />
+														<Joint name="L_P3_G" tx="0.000264456059" ty="-22.9159393" tz="0.0267532524" jointIndex="0">
+															<Mesh name="L_P3_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="60294" batchCount="2736" vertRStart="16493" vertREnd="17161" />
+															<Joint name="L_P4" tx="-0.00446012104" ty="7.81874496e-06" tz="5.18647867e-05" rx="83.9331436" ry="6.44280568e-14" rz="-180" jointIndex="0">
+																<Mesh name="L_P4_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="63030" batchCount="4128" vertRStart="17162" vertREnd="18351" />
+																<Joint name="L_P5_M" tx="0.0568801127" ty="-11.2366581" tz="0.0818196163" rx="0.00146043533" ry="0.000433945592" rz="-1.25147641" jointIndex="0">
+																	<Mesh name="L_P5_M_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="67158" batchCount="192" vertRStart="18352" vertREnd="18411" />
+																	<Joint name="L_P6_G" tx="0.143443659" ty="-9.37105465" tz="-0.0819969997" jointIndex="0">
+																		<Mesh name="L_P6_G_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="67350" batchCount="2736" vertRStart="18412" vertREnd="19080" />
+																		<Joint name="L_P7" tx="0.0122681633" ty="0.00024394221" tz="0.000256231084" rx="90" ry="0" rz="-3.97569398e-15" jointIndex="0">
+																			<Mesh name="L_P7_leg_0" material="gltf/buster_drone/buster_drone_material.material.xml" batchStart="70086" batchCount="3792" vertRStart="19081" vertREnd="20209" />
+																		</Joint>
+																	</Joint>
+																</Joint>
+															</Joint>
+														</Joint>
+													</Joint>
+												</Joint>
+											</Joint>
+										</Joint>
+									</Joint>
+									<Joint name="Drone_UPanel_R" tx="-28.3451996" ty="-10.2047596" tz="0.144668519" rx="15.2638474" ry="-90" rz="8.84992858e-07" jointIndex="0">
+										<Mesh name="Drone_UPanel_R_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="73878" batchCount="198" vertRStart="20210" vertREnd="20257" />
+									</Joint>
+									<Joint name="Drone_UPanel_L" tx="28.2305279" ty="-11.2282333" tz="-0.0769499987" rx="15.2638474" ry="90" rz="-8.84992858e-07" jointIndex="0">
+										<Mesh name="Drone_UPanel_L_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="74076" batchCount="198" vertRStart="20258" vertREnd="20305" />
+									</Joint>
+									<Joint name="Drone_UPart" tx="0" ty="38.9765511" tz="-3.07305002" jointIndex="0">
+										<Mesh name="Drone_UPart_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="74274" batchCount="198" vertRStart="20306" vertREnd="20357" />
+									</Joint>
+									<Joint name="Drone_ILens" tx="0" ty="-14.9658136" tz="41.5051689" jointIndex="0">
+										<Mesh name="Drone_ILens_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="74472" batchCount="324" vertRStart="20358" vertREnd="20418" />
+										<Joint name="Drone_IEye" tx="0" ty="-0.0182260238" tz="-8.90853786" rx="1.49813569" ry="173.134109" rz="9.75569492e-05" jointIndex="0">
+											<Mesh name="1" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="74796" batchCount="36" vertRStart="20419" vertREnd="20431" />
+										</Joint>
+									</Joint>
+									<Joint name="Drone_Turb_M_L" tx="19.9734001" ty="24.5568504" tz="-6.0070467" rx="-75.1792068" ry="-113.977448" rz="-155.294693" jointIndex="0">
+										<Mesh name="Drone_Turb_M_L_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="74832" batchCount="6768" vertRStart="20432" vertREnd="21826" />
+										<Joint name="Drone_Turb_Blade_L" tx="-2.18892965e-05" ty="-36.1551476" tz="-10.9667559" rx="-27.4896431" ry="80.9188766" rz="109.099648" jointIndex="0">
+											<Mesh name="Drone_Turb_Blade_L_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="81600" batchCount="4896" vertRStart="21827" vertREnd="23014" />
+										</Joint>
+									</Joint>
+									<Joint name="Drone_Turb_M_R" tx="-19.9734001" ty="24.5568485" tz="-6.00704956" rx="-75.0063858" ry="115.930878" rz="153.28038" jointIndex="0">
+										<Mesh name="Drone_Turb_M_R_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="86496" batchCount="6768" vertRStart="23015" vertREnd="24409" />
+										<Joint name="Drone_Turb_Blade_R" tx="5.1651492e-05" ty="-36.1551514" tz="-10.9667444" rx="-27.4896431" ry="-80.9189148" rz="-109.099655" jointIndex="0">
+											<Mesh name="Drone_Turb_Blade_R_body_0" material="gltf/buster_drone/buster_drone_body.material.xml" batchStart="93264" batchCount="4896" vertRStart="24410" vertREnd="25597" />
+										</Joint>
+									</Joint>
+								</Joint>
+							</Joint>
+						</Joint>
+					</Joint>
+				</Joint>
+			</Joint>
+		</Joint>
+	</Joint>
+</Model>

@@ -1755,40 +1755,43 @@ uint32 RenderDeviceGL4::getRenderBufferTex( uint32 rbObj, uint32 bufIndex )
 void RenderDeviceGL4::resolveRenderBuffer( uint32 rbObj )
 {
 	RDIRenderBufferGL4 &rb = _rendBufs.getRef( rbObj );
-	
-	if( rb.fboMS == 0 ) return;
-	
-	glBindFramebuffer( GL_READ_FRAMEBUFFER, rb.fboMS );
-	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, rb.fbo );
 
-	bool depthResolved = false;
-	for( uint32 i = 0; i < RDIRenderBufferGL4::MaxColorAttachmentCount; ++i )
+	if( rb.fboMS != 0 )
 	{
-		if( rb.colBufs[i] != 0 )
+		glBindFramebuffer( GL_READ_FRAMEBUFFER, rb.fboMS );
+		glBindFramebuffer( GL_DRAW_FRAMEBUFFER, rb.fbo );
+
+		bool depthResolved = false;
+		for( uint32 i = 0; i < RDIRenderBufferGL4::MaxColorAttachmentCount; ++i )
 		{
-			glReadBuffer( GL_COLOR_ATTACHMENT0 + i );
-			glDrawBuffer( GL_COLOR_ATTACHMENT0 + i );
-			
-			int mask = GL_COLOR_BUFFER_BIT;
-			if( !depthResolved && rb.depthBuf != 0 )
+			if( rb.colBufs[i] != 0 )
 			{
-				mask |= GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT;
-				depthResolved = true;
+				glReadBuffer( GL_COLOR_ATTACHMENT0 + i );
+				glDrawBuffer( GL_COLOR_ATTACHMENT0 + i );
+				int mask = GL_COLOR_BUFFER_BIT;
+				if( !depthResolved && rb.depthBuf != 0 )
+				{
+					mask |= GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT;
+					depthResolved = true;
+				}
+				glBlitFramebuffer( 0, 0, rb.width, rb.height, 0, 0, rb.width, rb.height, mask, GL_NEAREST );
 			}
-			glBlitFramebuffer( 0, 0, rb.width, rb.height, 0, 0, rb.width, rb.height, mask, GL_NEAREST );
 		}
-	}
 
-	if( !depthResolved && rb.depthBuf != 0 )
-	{
-		glReadBuffer( GL_NONE );
-		glDrawBuffer( GL_NONE );
-		glBlitFramebuffer( 0, 0, rb.width, rb.height, 0, 0, rb.width, rb.height,
-							  GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST );
+		if( !depthResolved && rb.depthBuf != 0 )
+		{
+			glReadBuffer( GL_NONE );
+			glDrawBuffer( GL_NONE );
+			glBlitFramebuffer( 0, 0, rb.width, rb.height, 0, 0, rb.width, rb.height,
+								  GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST );
+		}
 	}
 
 	glBindFramebuffer( GL_READ_FRAMEBUFFER, _defaultFBO );
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, _defaultFBO );
+	for( uint32 i = 0; i < RDIRenderBufferGL4::MaxColorAttachmentCount; ++i )
+		if( rb.colTexs[i] != 0 && _textures.getRef( rb.colTexs[i] ).genMips )
+			generateTextureMipmap( rb.colTexs[i] );
 }
 
 

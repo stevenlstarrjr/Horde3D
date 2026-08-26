@@ -1,0 +1,3 @@
+<Model name="DamagedHelmet" geometry="gltf/DamagedHelmet/DamagedHelmet.geo">
+	<Mesh name="node_damagedHelmet_-6514" rx="90" ry="0" rz="-0" material="gltf/DamagedHelmet/DamagedHelmet_Material_MR.material.xml" batchStart="0" batchCount="46356" vertRStart="0" vertREnd="14555" />
+</Model>

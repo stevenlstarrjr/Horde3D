@@ -84,6 +84,7 @@ public:
 	const std::string getANName() const { return _name; }
 	Matrix4f &getANRelTransRef() { return _relTrans; }
 	IAnimatableNode *getANParent() const;
+	bool setANMorphParam( const std::string &targetName, float weight );
 	
 	bool canAttach( SceneNode &parent ) const;
 	int getParamI( int param ) const;
@@ -163,6 +164,7 @@ public:
 	const std::string getANName() const { return _name; }
 	Matrix4f &getANRelTransRef() { return _relTrans; }
 	IAnimatableNode *getANParent() const;
+	bool setANMorphParam( const std::string &targetName, float weight );
 	
 	bool canAttach( SceneNode &parent ) const;
 	int getParamI( int param ) const;

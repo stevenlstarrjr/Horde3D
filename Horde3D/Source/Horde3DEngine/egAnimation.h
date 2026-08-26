@@ -42,12 +42,19 @@ struct Frame
 	Matrix4f    bakedTransMat;
 };
 
+struct MorphTrack
+{
+	std::string          name;
+	std::vector< float > weights;
+};
+
 
 struct AnimResEntity
 {
 	uint32                nameId;
 	Matrix4f              firstFrameInvTrans;
 	std::vector< Frame >  frames;
+	std::vector< MorphTrack > morphTracks;
 };
 
 // =================================================================================================
@@ -98,6 +105,7 @@ public:
 	virtual const std::string getANName() const = 0;
 	virtual IAnimatableNode *getANParent() const = 0;
 	virtual Matrix4f &getANRelTransRef() = 0;
+	virtual bool setANMorphParam( const std::string &targetName, float weight ) = 0;
 };
 
 struct AnimStage

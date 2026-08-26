@@ -81,9 +81,11 @@ else()
 endif()
 
 if(HORDE3D_USE_GLFW)
-	target_link_libraries(Chicago SampleFramework Horde3D Horde3DUtils ${GLFW_LIBRARIES})
+	target_link_libraries(Chicago SampleFramework Horde3D Horde3DUtils Horde3DHDRI ${GLFW_LIBRARIES})
 elseif(HORDE3D_USE_SDL)
-	target_link_libraries(Chicago SampleFramework Horde3D Horde3DUtils ${SDL2_LIBRARY})
+	target_link_libraries(Chicago SampleFramework Horde3D Horde3DUtils Horde3DHDRI ${SDL2_LIBRARY})
 endif()
+
+target_include_directories(Chicago PRIVATE ../../../Extensions/HDRI/Bindings/C++)
 
 add_dependencies(Chicago SampleFramework)

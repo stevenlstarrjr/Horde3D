@@ -1,0 +1,6 @@
+<Model name="IridescenceSuzanne" geometry="gltf/IridescenceSuzanne/IridescenceSuzanne.geo">
+	<Mesh name="Suzanne1" tx="-3" ty="0" tz="0" material="gltf/IridescenceSuzanne/IridescenceSuzanne_Material.material.xml" batchStart="0" batchCount="11808" vertRStart="0" vertREnd="3320" />
+	<Mesh name="Suzanne2" material="gltf/IridescenceSuzanne/IridescenceSuzanne_Material_1.material.xml" batchStart="11808" batchCount="11808" vertRStart="3321" vertREnd="6641" />
+	<Mesh name="Suzanne3" tx="3" ty="0" tz="0" material="gltf/IridescenceSuzanne/IridescenceSuzanne_Material_2.material.xml" batchStart="23616" batchCount="11808" vertRStart="6642" vertREnd="9962" />
+	<Joint name="Light" tx="5" ty="5" tz="5" jointIndex="0" />
+</Model>

@@ -84,14 +84,11 @@ struct AnimEntCompFunc  // Functor for std::sort (can't be nested directly in fu
 bool AnimationResource::load( const char *data, int size )
 {
 	if( !Resource::load( data, size ) ) return false;
-
-	// Make sure header and information about entity count and frames is available
-	if( size < 16 )
-		return raiseError( "Invalid animation resource" );
-
+	if( size < 16 ) return raiseError( "Invalid animation resource" );
 	char *pData = (char *)data;
+	char *endData = pData + size;
+	auto hasBytes = [&]( size_t count ) { return count <= (size_t)(endData - pData); };
 
-	// Check header and version
 	char id[4];
 	pData = elemcpy_le(id, (char*)(pData), 4);
 	if( id[0] != 'H' || id[1] != '3' || id[2] != 'D' || id[3] != 'A' )
@@ -99,36 +96,35 @@ bool AnimationResource::load( const char *data, int size )
 
 	uint32 version;
 	pData = elemcpy_le(&version, (uint32*)(pData), 1);
-	if( version != 2 && version != 3 )
+	if( version != 2 && version != 3 && version != 4 )
 		return raiseError( "Unsupported version of animation resource" );
 
-	// Load animation data
 	uint32 numEntities;
 	pData = elemcpy_le(&numEntities, (uint32*)(pData), 1);
 	pData = elemcpy_le(&_numFrames, (uint32*)(pData), 1);
+	if( _numFrames == 0 ) return raiseError( "Animation has no frames" );
 
 	_entities.resize( numEntities );
 
 	for( uint32 i = 0; i < numEntities; ++i )
 	{
-    	uint32 entityBytes = 256 + 16 + 24 + version == 3 ? 1 : 0; // name + quaternion + (transvec + scalevec)
-        if( size - 16 < entityBytes * ( i + 1 ) ) // 16 is header and numEntities and numFrames
-    		return raiseError( "Invalid/corrupted animation resource" );
-
 		char name[256], compressed = 0;
 		AnimResEntity &entity = _entities[i];
 
+		if( !hasBytes( 256 + (version >= 3 ? 1 : 0) ) ) return raiseError( "Invalid/corrupted animation resource" );
 		pData = elemcpy_le(name, (char*)(pData), 256);
+		name[255] = '\0';
 		entity.nameId = AnimationController::hashName( name );
 
-		// Animation compression
-		if( version == 3 )
+		if( version >= 3 )
 		{
 			pData = elemcpy_le(&compressed, (char*)(pData), 1);
 		}
 
-		entity.frames.resize( compressed ? 1 : _numFrames );
-		for( uint32 j = 0; j < (compressed ? 1 : _numFrames); ++j )
+		const uint32 storedFrames = compressed ? 1 : _numFrames;
+		if( !hasBytes( (size_t)storedFrames * 10 * sizeof(float) ) ) return raiseError( "Invalid/corrupted animation frames" );
+		entity.frames.resize( storedFrames );
+		for( uint32 j = 0; j < storedFrames; ++j )
 		{
 			Frame &frame = entity.frames[j];
 
@@ -153,6 +149,27 @@ bool AnimationResource::load( const char *data, int size )
 
 		if( !entity.frames.empty() )
 			entity.firstFrameInvTrans = entity.frames[0].bakedTransMat.inverted();
+
+		if( version >= 4 )
+		{
+			if( !hasBytes( sizeof(uint32) ) ) return raiseError( "Invalid morph animation data" );
+			uint32 morphCount = 0;
+			pData = elemcpy_le(&morphCount, (uint32*)(pData), 1);
+			entity.morphTracks.resize( morphCount );
+			for( uint32 trackIndex = 0; trackIndex < morphCount; ++trackIndex )
+			{
+				if( !hasBytes( 257 ) ) return raiseError( "Invalid morph animation track" );
+				char morphName[256], morphCompressed = 0;
+				pData = elemcpy_le(morphName, (char*)(pData), 256); morphName[255] = '\0';
+				pData = elemcpy_le(&morphCompressed, (char*)(pData), 1);
+				MorphTrack &track = entity.morphTracks[trackIndex];
+				track.name = morphName;
+				const uint32 weightCount = morphCompressed ? 1 : _numFrames;
+				if( !hasBytes( (size_t)weightCount * sizeof(float) ) ) return raiseError( "Invalid morph animation weights" );
+				track.weights.resize( weightCount );
+				pData = elemcpy_le(track.weights.data(), (float*)(pData), weightCount);
+			}
+		}
 	}
 
 	// Sort entities by name id
@@ -393,6 +410,32 @@ bool AnimationController::animate()
 	// Animate
 	for( size_t i = 0, si = _nodeList.size(); i < si; ++i )
 	{
+		// Version 4 clips can carry glTF morph weights alongside node transforms.
+		// Blend tracks with the same target name across active animation stages.
+		map< string, pair< float, float > > morphValues;
+		for( size_t stageListIndex = 0; stageListIndex < _activeStages.size(); ++stageListIndex )
+		{
+			const uint32 stageIndex = _activeStages[stageListIndex];
+			const AnimStage &stage = _animStages[stageIndex];
+			AnimResEntity *entity = _nodeList[i].animEntities[stageIndex];
+			if( entity == 0x0 || stage.weight <= 0.0f ) continue;
+			for( size_t trackIndex = 0; trackIndex < entity->morphTracks.size(); ++trackIndex )
+			{
+				const MorphTrack &track = entity->morphTracks[trackIndex];
+				if( track.weights.empty() ) continue;
+				uint32 f0 = (uint32)ftoi_t( stage.animTime ) % (uint32)track.weights.size();
+				uint32 f1 = min( f0 + 1, (uint32)track.weights.size() - 1 );
+				float value = track.weights[f0];
+				if( !Modules::config().fastAnimation && track.weights.size() > 1 )
+					value += (track.weights[f1] - value) * (stage.animTime - ftoi_t( stage.animTime ));
+				pair< float, float > &blend = morphValues[track.name];
+				blend.first += value * stage.weight;
+				blend.second += stage.weight;
+			}
+		}
+		for( map< string, pair< float, float > >::const_iterator itr = morphValues.begin(); itr != morphValues.end(); ++itr )
+			_nodeList[i].node->setANMorphParam( itr->first, itr->second.first / maxf( itr->second.second, Math::Epsilon ) );
+
 		// Fast path
 		if( Modules::config().fastAnimation && _activeStages.size() == 1 )
 		{

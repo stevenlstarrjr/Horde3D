@@ -1,0 +1,14 @@
+<Model name="CommercialRefrigerator" geometry="gltf/CommercialRefrigerator/CommercialRefrigerator.geo">
+	<Mesh name="FridgeCase" rx="-90" ry="0" rz="-0" material="gltf/CommercialRefrigerator/CommercialRefrigerator_FridgeCase.material.xml" batchStart="0" batchCount="1488" vertRStart="0" vertREnd="719">
+		<Mesh name="FridgeDoor" tx="0.376374096" ty="-0.428568602" tz="0.357324719" material="gltf/CommercialRefrigerator/CommercialRefrigerator_FridgeCase.material.xml" batchStart="1488" batchCount="1164" vertRStart="720" vertREnd="1301">
+			<Mesh name="FridgeDoorInner" tx="-0.376374096" ty="0.428568602" tz="-0.357324719" material="gltf/CommercialRefrigerator/CommercialRefrigerator_FridgeInterior.material.xml" batchStart="2652" batchCount="84" vertRStart="1302" vertREnd="1343" />
+			<Mesh name="FridgeGlass" tx="-0.376374096" ty="0.428568602" tz="-0.357324719" material="gltf/CommercialRefrigerator/CommercialRefrigerator_FridgeGlass.material.xml" batchStart="2736" batchCount="6" vertRStart="1344" vertREnd="1347" />
+		</Mesh>
+		<Mesh name="FridgeInterior" material="gltf/CommercialRefrigerator/CommercialRefrigerator_FridgeInterior.material.xml" batchStart="2742" batchCount="6783" vertRStart="1348" vertREnd="3959">
+			<Mesh name="ChampagneBottles" tx="-0.327920288" ty="-0.204705462" tz="1.09197116" rx="59.1922913" ry="-90" rz="-90" material="gltf/CommercialRefrigerator/CommercialRefrigerator_ChampagneGlass.material.xml" batchStart="9525" batchCount="322848" vertRStart="3960" vertREnd="62175">
+				<Mesh name="#ChampagneBottles_1" material="gltf/CommercialRefrigerator/CommercialRefrigerator_ChampagneFoil.material.xml" batchStart="332373" batchCount="279072" vertRStart="62176" vertREnd="113399" />
+				<Mesh name="#ChampagneBottles_2" material="gltf/CommercialRefrigerator/CommercialRefrigerator_ChampagneLabel.material.xml" batchStart="611445" batchCount="14592" vertRStart="113400" vertREnd="116819" />
+			</Mesh>
+		</Mesh>
+	</Mesh>
+</Model>

@@ -1,0 +1,20 @@
+<Material>
+	<Shader source="shaders/gltf_pbr.shader" />
+	<Sampler name="baseColorMap" map="gltf/buster_drone/buster_drone_baseColor_0.png" />
+	<Sampler name="metallicRoughnessMap" map="gltf/buster_drone/buster_drone_metalRough_1.png" />
+	<Sampler name="normalMap" map="gltf/buster_drone/buster_drone_normal_2.png" allowCompression="false" />
+	<Sampler name="occlusionMap" map="textures/common/white.tga" />
+	<Sampler name="emissiveMap" map="textures/common/white.tga" />
+	<Sampler name="iblIrradiance" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular0" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular1" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular2" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular3" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular4" map="models/skybox/skybox.dds" />
+	<Sampler name="iblBrdfLut" map="textures/common/white.tga" />
+	<Uniform name="baseColorFactor" a="1" b="1" c="1" d="1" />
+	<Uniform name="pbrParams" a="1" b="1" c="0" d="1" />
+	<Uniform name="emissiveFactor" a="0" b="0" c="0" d="1" />
+	<Uniform name="normalScale" a="1" />
+	<Uniform name="pbrDebugView" a="0" />
+</Material>

@@ -1,0 +1,54 @@
+<Model name="AnisotropyStrengthTest" geometry="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest.geo">
+	<Joint name="Node_50" jointIndex="0">
+		<Mesh name="Node_0" tx="-3" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_0.material.xml" batchStart="0" batchCount="5952" vertRStart="0" vertREnd="1086" />
+		<Mesh name="Node_1" tx="-3" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_1.material.xml" batchStart="5952" batchCount="5952" vertRStart="1087" vertREnd="2173" />
+		<Mesh name="Node_2" tx="-3" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_2.material.xml" batchStart="11904" batchCount="5952" vertRStart="2174" vertREnd="3260" />
+		<Mesh name="Node_3" tx="-3" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_3.material.xml" batchStart="17856" batchCount="5952" vertRStart="3261" vertREnd="4347" />
+		<Mesh name="Node_4" tx="-3" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_4.material.xml" batchStart="23808" batchCount="5952" vertRStart="4348" vertREnd="5434" />
+		<Mesh name="Node_5" tx="-3" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_5.material.xml" batchStart="29760" batchCount="5952" vertRStart="5435" vertREnd="6521" />
+		<Mesh name="Node_6" tx="-3" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_6.material.xml" batchStart="35712" batchCount="5952" vertRStart="6522" vertREnd="7608" />
+		<Mesh name="Node_7" tx="-2" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_7.material.xml" batchStart="41664" batchCount="5952" vertRStart="7609" vertREnd="8695" />
+		<Mesh name="Node_8" tx="-2" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_8.material.xml" batchStart="47616" batchCount="5952" vertRStart="8696" vertREnd="9782" />
+		<Mesh name="Node_9" tx="-2" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_9.material.xml" batchStart="53568" batchCount="5952" vertRStart="9783" vertREnd="10869" />
+		<Mesh name="Node_10" tx="-2" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_10.material.xml" batchStart="59520" batchCount="5952" vertRStart="10870" vertREnd="11956" />
+		<Mesh name="Node_11" tx="-2" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_11.material.xml" batchStart="65472" batchCount="5952" vertRStart="11957" vertREnd="13043" />
+		<Mesh name="Node_12" tx="-2" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_12.material.xml" batchStart="71424" batchCount="5952" vertRStart="13044" vertREnd="14130" />
+		<Mesh name="Node_13" tx="-2" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_13.material.xml" batchStart="77376" batchCount="5952" vertRStart="14131" vertREnd="15217" />
+		<Mesh name="Node_14" tx="-1" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_14.material.xml" batchStart="83328" batchCount="5952" vertRStart="15218" vertREnd="16304" />
+		<Mesh name="Node_15" tx="-1" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_15.material.xml" batchStart="89280" batchCount="5952" vertRStart="16305" vertREnd="17391" />
+		<Mesh name="Node_16" tx="-1" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_16.material.xml" batchStart="95232" batchCount="5952" vertRStart="17392" vertREnd="18478" />
+		<Mesh name="Node_17" tx="-1" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_17.material.xml" batchStart="101184" batchCount="5952" vertRStart="18479" vertREnd="19565" />
+		<Mesh name="Node_18" tx="-1" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_18.material.xml" batchStart="107136" batchCount="5952" vertRStart="19566" vertREnd="20652" />
+		<Mesh name="Node_19" tx="-1" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_19.material.xml" batchStart="113088" batchCount="5952" vertRStart="20653" vertREnd="21739" />
+		<Mesh name="Node_20" tx="-1" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_20.material.xml" batchStart="119040" batchCount="5952" vertRStart="21740" vertREnd="22826" />
+		<Mesh name="Node_21" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_21.material.xml" batchStart="124992" batchCount="5952" vertRStart="22827" vertREnd="23913" />
+		<Mesh name="Node_22" tx="0" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_22.material.xml" batchStart="130944" batchCount="5952" vertRStart="23914" vertREnd="25000" />
+		<Mesh name="Node_23" tx="0" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_23.material.xml" batchStart="136896" batchCount="5952" vertRStart="25001" vertREnd="26087" />
+		<Mesh name="Node_24" tx="0" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_24.material.xml" batchStart="142848" batchCount="5952" vertRStart="26088" vertREnd="27174" />
+		<Mesh name="Node_25" tx="0" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_25.material.xml" batchStart="148800" batchCount="5952" vertRStart="27175" vertREnd="28261" />
+		<Mesh name="Node_26" tx="0" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_26.material.xml" batchStart="154752" batchCount="5952" vertRStart="28262" vertREnd="29348" />
+		<Mesh name="Node_27" tx="0" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_27.material.xml" batchStart="160704" batchCount="5952" vertRStart="29349" vertREnd="30435" />
+		<Mesh name="Node_28" tx="1" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_28.material.xml" batchStart="166656" batchCount="5952" vertRStart="30436" vertREnd="31522" />
+		<Mesh name="Node_29" tx="1" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_29.material.xml" batchStart="172608" batchCount="5952" vertRStart="31523" vertREnd="32609" />
+		<Mesh name="Node_30" tx="1" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_30.material.xml" batchStart="178560" batchCount="5952" vertRStart="32610" vertREnd="33696" />
+		<Mesh name="Node_31" tx="1" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_31.material.xml" batchStart="184512" batchCount="5952" vertRStart="33697" vertREnd="34783" />
+		<Mesh name="Node_32" tx="1" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_32.material.xml" batchStart="190464" batchCount="5952" vertRStart="34784" vertREnd="35870" />
+		<Mesh name="Node_33" tx="1" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_33.material.xml" batchStart="196416" batchCount="5952" vertRStart="35871" vertREnd="36957" />
+		<Mesh name="Node_34" tx="1" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_34.material.xml" batchStart="202368" batchCount="5952" vertRStart="36958" vertREnd="38044" />
+		<Mesh name="Node_35" tx="2" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_35.material.xml" batchStart="208320" batchCount="5952" vertRStart="38045" vertREnd="39131" />
+		<Mesh name="Node_36" tx="2" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_36.material.xml" batchStart="214272" batchCount="5952" vertRStart="39132" vertREnd="40218" />
+		<Mesh name="Node_37" tx="2" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_37.material.xml" batchStart="220224" batchCount="5952" vertRStart="40219" vertREnd="41305" />
+		<Mesh name="Node_38" tx="2" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_38.material.xml" batchStart="226176" batchCount="5952" vertRStart="41306" vertREnd="42392" />
+		<Mesh name="Node_39" tx="2" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_39.material.xml" batchStart="232128" batchCount="5952" vertRStart="42393" vertREnd="43479" />
+		<Mesh name="Node_40" tx="2" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_40.material.xml" batchStart="238080" batchCount="5952" vertRStart="43480" vertREnd="44566" />
+		<Mesh name="Node_41" tx="2" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_41.material.xml" batchStart="244032" batchCount="5952" vertRStart="44567" vertREnd="45653" />
+		<Mesh name="Node_42" tx="3" ty="0" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_42.material.xml" batchStart="249984" batchCount="5952" vertRStart="45654" vertREnd="46740" />
+		<Mesh name="Node_43" tx="3" ty="1" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_43.material.xml" batchStart="255936" batchCount="5952" vertRStart="46741" vertREnd="47827" />
+		<Mesh name="Node_44" tx="3" ty="2" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_44.material.xml" batchStart="261888" batchCount="5952" vertRStart="47828" vertREnd="48914" />
+		<Mesh name="Node_45" tx="3" ty="3" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_45.material.xml" batchStart="267840" batchCount="5952" vertRStart="48915" vertREnd="50001" />
+		<Mesh name="Node_46" tx="3" ty="4" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_46.material.xml" batchStart="273792" batchCount="5952" vertRStart="50002" vertREnd="51088" />
+		<Mesh name="Node_47" tx="3" ty="5" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_47.material.xml" batchStart="279744" batchCount="5952" vertRStart="51089" vertREnd="52175" />
+		<Mesh name="Node_48" tx="3" ty="6" tz="0" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Material_48.material.xml" batchStart="285696" batchCount="5952" vertRStart="52176" vertREnd="53262" />
+		<Mesh name="Labels" material="gltf/AnisotropyStrengthTest/AnisotropyStrengthTest_Label_Mat.material.xml" batchStart="291648" batchCount="72" vertRStart="53263" vertREnd="53310" />
+	</Joint>
+</Model>

@@ -1401,7 +1401,14 @@ void RenderDeviceGL2::resolveRenderBuffer( uint32 rbObj )
 {
 	RDIRenderBufferGL2 &rb = _rendBufs.getRef( rbObj );
 	
-	if( rb.fboMS == 0 ) return;
+	if( rb.fboMS == 0 )
+	{
+		glBindFramebufferEXT( GL_FRAMEBUFFER_EXT, _defaultFBO );
+		for( uint32 i = 0; i < RDIRenderBufferGL2::MaxColorAttachmentCount; ++i )
+			if( rb.colTexs[i] != 0 && _textures.getRef( rb.colTexs[i] ).genMips )
+				generateTextureMipmap( rb.colTexs[i] );
+		return;
+	}
 	
 	glBindFramebufferEXT( GL_READ_FRAMEBUFFER_EXT, rb.fboMS );
 	glBindFramebufferEXT( GL_DRAW_FRAMEBUFFER_EXT, rb.fbo );
@@ -1434,6 +1441,9 @@ void RenderDeviceGL2::resolveRenderBuffer( uint32 rbObj )
 
 	glBindFramebufferEXT( GL_READ_FRAMEBUFFER_EXT, _defaultFBO );
 	glBindFramebufferEXT( GL_DRAW_FRAMEBUFFER_EXT, _defaultFBO );
+	for( uint32 i = 0; i < RDIRenderBufferGL2::MaxColorAttachmentCount; ++i )
+		if( rb.colTexs[i] != 0 && _textures.getRef( rb.colTexs[i] ).genMips )
+			generateTextureMipmap( rb.colTexs[i] );
 }
 
 

@@ -294,8 +294,6 @@ void OverlayRenderer::addInfoBoxRow( const char *column1, const char *column2 )
 void OverlayRenderer::showFrameStats( MaterialResource *fontMatRes, MaterialResource *panelMatRes, int mode )
 {
 	static stringstream text;
-	static float curFPS = 30;
-	static float timer = 100;
 	static float fps = 30;
 	static float frameTime = 0;
 	static float animTime = 0;
@@ -307,34 +305,53 @@ void OverlayRenderer::showFrameStats( MaterialResource *fontMatRes, MaterialReso
 	static float particleGPUTime = 0;
 	static float computeGPUTime = 0;
 	static float cullingTime = 0;
+	static float sampledFrameTime = 0;
+	static float sampledAnimTime = 0;
+	static float sampledGeoUpdateTime = 0;
+	static float sampledParticleSimTime = 0;
+	static float sampledCullingTime = 0;
+	static unsigned int sampledFrames = 0;
 
-	// Calculate FPS
+	// Average complete frames over the display interval. The old implementation
+	// showed the one frame that happened to cross the 0.7 second boundary, which
+	// strongly biased the display toward occasional long frames.
 	float curFrameTime = Modules::stats().getStat( EngineStats::FrameTime, true );
-	curFPS = 1000.0f / curFrameTime;
-
-	timer += curFrameTime / 1000.0f;
-	if ( timer > 0.7f )
+	float curAnimTime = Modules::stats().getStat( EngineStats::AnimationTime, true );
+	float curGeoUpdateTime = Modules::stats().getStat( EngineStats::GeoUpdateTime, true );
+	float curParticleSimTime = Modules::stats().getStat( EngineStats::ParticleSimTime, true );
+	float curCullingTime = Modules::stats().getStat( EngineStats::CullingTime, true );
+	if ( curFrameTime > 0.0f )
 	{
-		fps = curFPS;
-		frameTime = curFrameTime;
-		animTime = Modules::stats().getStat( EngineStats::AnimationTime, true );
-		geoUpdateTime = Modules::stats().getStat( EngineStats::GeoUpdateTime, true );
-		particleSimTime = Modules::stats().getStat( EngineStats::ParticleSimTime, true );
-		fwdLightsGPUTime = Modules::stats().getStat( EngineStats::FwdLightsGPUTime, true );
-		defLightsGPUTime = Modules::stats().getStat( EngineStats::DefLightsGPUTime, true );
-		shadowsGPUTime = Modules::stats().getStat( EngineStats::ShadowsGPUTime, true );
-		particleGPUTime = Modules::stats().getStat( EngineStats::ParticleGPUTime, true );
-		computeGPUTime = Modules::stats().getStat( EngineStats::ComputeGPUTime, true );
-		cullingTime = Modules::stats().getStat( EngineStats::CullingTime, true );;
-		timer = 0;
+		sampledFrameTime += curFrameTime;
+		sampledAnimTime += curAnimTime;
+		sampledGeoUpdateTime += curGeoUpdateTime;
+		sampledParticleSimTime += curParticleSimTime;
+		sampledCullingTime += curCullingTime;
+		++sampledFrames;
 	}
-	else
+	if ( sampledFrameTime >= 700.0f && sampledFrames > 0 )
 	{
-		// Reset accumulative counters
-		Modules::stats().getStat( EngineStats::AnimationTime, true );
-		Modules::stats().getStat( EngineStats::GeoUpdateTime, true );
-		Modules::stats().getStat( EngineStats::ParticleSimTime, true );
-		Modules::stats().getStat( EngineStats::CullingTime, true );
+		float inverseFrames = 1.0f / static_cast<float>( sampledFrames );
+		fps = 1000.0f * static_cast<float>( sampledFrames ) / sampledFrameTime;
+		frameTime = sampledFrameTime * inverseFrames;
+		animTime = sampledAnimTime * inverseFrames;
+		geoUpdateTime = sampledGeoUpdateTime * inverseFrames;
+		particleSimTime = sampledParticleSimTime * inverseFrames;
+		cullingTime = sampledCullingTime * inverseFrames;
+		if ( mode > 1 )
+		{
+			fwdLightsGPUTime = Modules::stats().getStat( EngineStats::FwdLightsGPUTime, true );
+			defLightsGPUTime = Modules::stats().getStat( EngineStats::DefLightsGPUTime, true );
+			shadowsGPUTime = Modules::stats().getStat( EngineStats::ShadowsGPUTime, true );
+			particleGPUTime = Modules::stats().getStat( EngineStats::ParticleGPUTime, true );
+			computeGPUTime = Modules::stats().getStat( EngineStats::ComputeGPUTime, true );
+		}
+		sampledFrameTime = 0;
+		sampledAnimTime = 0;
+		sampledGeoUpdateTime = 0;
+		sampledParticleSimTime = 0;
+		sampledCullingTime = 0;
+		sampledFrames = 0;
 	}
 
 	if ( mode > 0 )

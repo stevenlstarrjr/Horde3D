@@ -292,7 +292,7 @@ const string PipelineResource::parseStage( XMLNode &node, PipelineStage &stage )
 
 void PipelineResource::addRenderTarget( const string &id, bool depthBuf, uint32 numColBufs,
 										TextureFormats::List format, uint32 samples,
-										uint32 width, uint32 height, float scale )
+										uint32 width, uint32 height, float scale, uint32 maxMipLevel )
 {
 	RenderTarget rt;
 	
@@ -301,6 +301,7 @@ void PipelineResource::addRenderTarget( const string &id, bool depthBuf, uint32 
 	rt.numColBufs = numColBufs;
 	rt.format = format;
 	rt.samples = samples;
+	rt.maxMipLevel = maxMipLevel;
 	rt.width = width;
 	rt.height = height;
 	rt.scale = scale;
@@ -338,7 +339,7 @@ bool PipelineResource::createRenderTargets()
 		if( height == 0 ) height = ftoi_r( _baseHeight * rt.scale );
 		
 		rt.rendBuf = rdi->createRenderBuffer(
-			width, height, rt.format, rt.hasDepthBuf, rt.numColBufs, rt.samples, 0 );
+			width, height, rt.format, rt.hasDepthBuf, rt.numColBufs, rt.samples, rt.maxMipLevel );
 		if( rt.rendBuf == 0 ) return false;
 	}
 	
@@ -406,9 +407,10 @@ bool PipelineResource::load( const char *data, int size )
 			uint32 width = atoi( node2.getAttribute( "width", "0" ) );
 			uint32 height = atoi( node2.getAttribute( "height", "0" ) );
 			float scale = toFloat( node2.getAttribute( "scale", "1" ) );
+			uint32 maxMipLevel = atoi( node2.getAttribute( "maxMipLevel", "0" ) );
 
 			addRenderTarget( id, depth, numBuffers, format,
-				std::min( maxSamples, Modules::config().sampleCount ), width, height, scale );
+				std::min( maxSamples, Modules::config().sampleCount ), width, height, scale, maxMipLevel );
 
 			node2 = node2.getNextSibling( "RenderTarget" );
 		}

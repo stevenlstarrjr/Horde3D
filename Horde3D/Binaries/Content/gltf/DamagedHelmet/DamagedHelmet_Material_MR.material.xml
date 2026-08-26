@@ -1,0 +1,20 @@
+<Material>
+	<Shader source="shaders/gltf_pbr.shader" />
+	<Sampler name="baseColorMap" map="gltf/DamagedHelmet/DamagedHelmet_baseColor_0.jpg" />
+	<Sampler name="metallicRoughnessMap" map="gltf/DamagedHelmet/DamagedHelmet_metalRough_1.jpg" />
+	<Sampler name="normalMap" map="gltf/DamagedHelmet/DamagedHelmet_normal_4.jpg" allowCompression="false" />
+	<Sampler name="occlusionMap" map="gltf/DamagedHelmet/DamagedHelmet_occlusion_3.jpg" />
+	<Sampler name="emissiveMap" map="gltf/DamagedHelmet/DamagedHelmet_emissive_2.jpg" />
+	<Sampler name="iblIrradiance" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular0" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular1" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular2" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular3" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular4" map="models/skybox/skybox.dds" />
+	<Sampler name="iblBrdfLut" map="textures/common/white.tga" />
+	<Uniform name="baseColorFactor" a="1" b="1" c="1" d="1" />
+	<Uniform name="pbrParams" a="1" b="1" c="1" d="1" />
+	<Uniform name="emissiveFactor" a="1" b="1" c="1" d="1" />
+	<Uniform name="normalScale" a="1" />
+	<Uniform name="pbrDebugView" a="0" />
+</Material>

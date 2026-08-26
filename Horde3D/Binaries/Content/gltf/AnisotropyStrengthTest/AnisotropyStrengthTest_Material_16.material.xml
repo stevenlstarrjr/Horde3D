@@ -1,0 +1,48 @@
+<Material>
+	<Shader source="shaders/gltf_pbr.shader" />
+	<Sampler name="baseColorMap" map="textures/common/white.tga" />
+	<Sampler name="metallicRoughnessMap" map="textures/common/white.tga" />
+	<Sampler name="normalMap" map="textures/common/defnorm.tga" allowCompression="false" />
+	<Sampler name="occlusionMap" map="textures/common/white.tga" />
+	<Sampler name="emissiveMap" map="textures/common/white.tga" />
+	<Sampler name="iridescenceMap" map="textures/common/white.tga" />
+	<Sampler name="iridescenceThicknessMap" map="textures/common/white.tga" />
+	<Sampler name="transmissionMap" map="textures/common/white.tga" />
+	<Sampler name="volumeThicknessMap" map="textures/common/white.tga" />
+	<Sampler name="iblIrradiance" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular0" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular1" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular2" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular3" map="models/skybox/skybox.dds" />
+	<Sampler name="iblSpecular4" map="models/skybox/skybox.dds" />
+	<Sampler name="iblBrdfLut" map="textures/common/white.tga" />
+	<Uniform name="baseColorFactor" a="1" b="1" c="1" d="1" />
+	<Uniform name="pbrParams" a="1" b="0.333333343" c="0" d="1" />
+	<Uniform name="emissiveFactor" a="0" b="0" c="0" d="1" />
+	<Uniform name="normalScale" a="0" />
+	<Uniform name="baseIor" a="1.5" />
+	<Uniform name="iridescenceParams" a="0" b="1.29999995" c="100" d="400" />
+	<Uniform name="transmissionParams" a="0" b="0" c="1.00000002e+20" />
+	<Uniform name="clearcoatParams" a="0" b="0" c="1" d="0" />
+	<Uniform name="anisotropyParams" a="0.333333343" b="0" c="0" d="0" />
+	<Uniform name="attenuationColor" a="1" b="1" c="1" d="1" />
+	<Uniform name="baseColorTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="metalRoughTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="normalTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="occlusionTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="emissiveTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="iridescenceTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="iridescenceThicknessTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="transmissionTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="volumeThicknessTexTransform" a="0" b="0" c="1" d="1" />
+	<Uniform name="baseColorTexRotation" a="0" />
+	<Uniform name="metalRoughTexRotation" a="0" />
+	<Uniform name="normalTexRotation" a="0" />
+	<Uniform name="occlusionTexRotation" a="0" />
+	<Uniform name="emissiveTexRotation" a="0" />
+	<Uniform name="iridescenceTexRotation" a="0" />
+	<Uniform name="iridescenceThicknessTexRotation" a="0" />
+	<Uniform name="transmissionTexRotation" a="0" />
+	<Uniform name="volumeThicknessTexRotation" a="0" />
+	<Uniform name="pbrDebugView" a="0" />
+</Material>

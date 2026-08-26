@@ -132,6 +132,11 @@ IAnimatableNode *MeshNode::getANParent() const
 	}
 }
 
+bool MeshNode::setANMorphParam( const string &targetName, float weight )
+{
+	return _parentModel != 0x0 && _parentModel->setMorphParam( targetName, weight );
+}
+
 
 bool MeshNode::canAttach( SceneNode &parent ) const
 {
@@ -326,6 +331,11 @@ IAnimatableNode *JointNode::getANParent() const
 	default:
 		return 0x0;
 	}
+}
+
+bool JointNode::setANMorphParam( const string &targetName, float weight )
+{
+	return _parentModel != 0x0 && _parentModel->setMorphParam( targetName, weight );
 }
 
 

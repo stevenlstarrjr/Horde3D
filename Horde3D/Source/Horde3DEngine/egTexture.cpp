@@ -675,7 +675,9 @@ bool TextureResource::loadSTBI( const char *data, int size )
 		return raiseError( "Invalid image format (" + string( stbi_failure_reason() ) + ")" );
 
 	// Swizzle RGBA -> BGRA if required
-	if ( bgraSwizzleRequired )
+	// The swizzle below operates on packed 8-bit pixels. HDR pixels are four independent floats
+	// and must remain RGBA; treating a float's bits as BGRA corrupts both its value and channels.
+	if ( bgraSwizzleRequired && !hdr )
 	{
 		uint32 *ptr = ( uint32 * ) pixels;
 		for ( uint32 i = 0, si = _width * _height; i < si; ++i )
@@ -687,7 +689,10 @@ bool TextureResource::loadSTBI( const char *data, int size )
 	
 	_depth = 1;
 	_texType = TextureTypes::Tex2D;
-	_texFormat = hdr ? TextureFormats::RGBA16F : TextureFormats::BGRA8;
+	// stb_image returns four 32-bit floats for HDR input. Keep the GPU upload format consistent
+	// with that memory layout; uploading this pointer as RGBA16F interpreted pairs of float bytes
+	// as half values and corrupted Radiance .hdr textures.
+	_texFormat = hdr ? TextureFormats::RGBA32F : TextureFormats::BGRA8;
 	_sRGB = (_flags & ResourceFlags::TexSRGB) != 0;
 	_maxMipLevel = (_flags & ResourceFlags::NoTexMipmaps) ? 0 : getMaxAtMipFullLevel();
 

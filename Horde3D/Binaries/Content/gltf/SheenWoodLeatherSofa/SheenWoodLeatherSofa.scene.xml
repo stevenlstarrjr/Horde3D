@@ -1,0 +1,8 @@
+<Model name="SheenWoodLeatherSofa" geometry="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa.geo">
+	<Mesh name="Fringe" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Fringe.material.xml" batchStart="0" batchCount="53760" vertRStart="0" vertREnd="53759" />
+	<Mesh name="Frame" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Frame.material.xml" batchStart="53760" batchCount="49296" vertRStart="53760" vertREnd="103055" />
+	<Mesh name="Frame_Fabric" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Frame_Fabric.material.xml" batchStart="103056" batchCount="3552" vertRStart="103056" vertREnd="106607" />
+	<Mesh name="Paisley" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Paisley.material.xml" batchStart="106608" batchCount="20376" vertRStart="106608" vertREnd="126983" />
+	<Mesh name="Stripes" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Striped.material.xml" batchStart="126984" batchCount="3168" vertRStart="126984" vertREnd="130151" />
+	<Mesh name="Brown" rx="-90" ry="0" rz="-0" material="gltf/SheenWoodLeatherSofa/SheenWoodLeatherSofa_Brown.material.xml" batchStart="130152" batchCount="9324" vertRStart="130152" vertREnd="139475" />
+</Model>

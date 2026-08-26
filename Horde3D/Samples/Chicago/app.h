@@ -18,6 +18,7 @@
 #define _app_H_
 
 #include "../Framework/sampleapp.h"
+#include "Horde3DHDRI.h"
 
 class CrowdSim;
 
@@ -34,9 +35,10 @@ protected:
 	
 private:
     CrowdSim     *_crowdSim;
+	H3DRes _hdriSource = 0;
+	H3DHdriIbl _ibl;
 };
 
 #endif // _app_H_
-
 
 

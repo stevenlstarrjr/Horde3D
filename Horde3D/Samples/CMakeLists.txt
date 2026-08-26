@@ -5,6 +5,10 @@ add_subdirectory(Framework)
 add_subdirectory(Chicago)
 add_subdirectory(Knight)
 
+if(NOT CMAKE_SYSTEM_NAME MATCHES "iOS|Android|Emscripten" AND HORDE3D_BUILD_HDRI)
+	add_subdirectory(GLTF)
+endif()
+
 if( NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten" )
     add_subdirectory(ParticleVortex) # Compute shaders are not supported on Emscripten, which is what this example uses
     add_subdirectory(Tessellator)    # requires OpenGLES 3.2, but WebGL only supports OpenGLES 3.0

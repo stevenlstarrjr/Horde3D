@@ -1863,7 +1863,14 @@ void RenderDeviceGLES3::resolveRenderBuffer( uint32 rbObj )
 {
 	RDIRenderBufferGLES3 &rb = _rendBufs.getRef( rbObj );
 	
-	if( rb.fboMS == 0 ) return;
+	if( rb.fboMS == 0 )
+	{
+		glBindFramebuffer( GL_FRAMEBUFFER, _defaultFBO );
+		for( uint32 i = 0; i < RDIRenderBufferGLES3::MaxColorAttachmentCount; ++i )
+			if( rb.colTexs[i] != 0 && _textures.getRef( rb.colTexs[i] ).genMips )
+				generateTextureMipmap( rb.colTexs[i] );
+		return;
+	}
 	
 	glBindFramebuffer( GL_READ_FRAMEBUFFER, rb.fboMS );
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, rb.fbo );
@@ -1905,6 +1912,9 @@ void RenderDeviceGLES3::resolveRenderBuffer( uint32 rbObj )
 
 	glBindFramebuffer( GL_READ_FRAMEBUFFER, _defaultFBO );
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, _defaultFBO );
+	for( uint32 i = 0; i < RDIRenderBufferGLES3::MaxColorAttachmentCount; ++i )
+		if( rb.colTexs[i] != 0 && _textures.getRef( rb.colTexs[i] ).genMips )
+			generateTextureMipmap( rb.colTexs[i] );
 }
 
 

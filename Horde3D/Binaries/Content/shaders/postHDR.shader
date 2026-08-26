@@ -15,10 +15,18 @@ sampler2D buf1 = sampler_state
 float hdrExposure = 2.0;       // Exposure (higher values make scene brighter)
 float hdrBrightThres = 0.6;    // Brightpass threshold (intensity where blooming begins)
 float hdrBrightOffset = 0.06;  // Brightpass offset (smaller values produce stronger blooming)
+float hdrBloomStrength = 0.15; // Contribution of blurred highlights in the final image
 
 float4 blurParams = {0, 0, 0, 0};
 
 // Contexts
+context COPY
+{
+	VertexShader = compile GLSL VS_FSQUAD;
+	PixelShader = compile GLSL FS_COPY;
+	ZWriteEnable = false;
+}
+
 context BRIGHTPASS
 {
 	VertexShader = compile GLSL VS_FSQUAD;
@@ -45,6 +53,13 @@ context FINALPASS
 
 OpenGL4
 {
+	context COPY
+	{
+		VertexShader = compile GLSL VS_FSQUAD_GL4;
+		PixelShader = compile GLSL FS_COPY_GL4;
+		ZWriteEnable = false;
+	}
+
 	context BRIGHTPASS
 	{
 		VertexShader = compile GLSL VS_FSQUAD_GL4;
@@ -72,6 +87,13 @@ OpenGL4
 
 OpenGLES3
 {
+	context COPY
+	{
+		VertexShader = compile GLSL VS_FSQUAD_GL4;
+		PixelShader = compile GLSL FS_COPY_GL4;
+		ZWriteEnable = false;
+	}
+
 	context BRIGHTPASS
 	{
 		VertexShader = compile GLSL VS_FSQUAD_GL4;
@@ -123,6 +145,17 @@ void main( void )
 	texCoords = vertPos.xy; 
 	gl_Position = projMat * vec4( vertPos, 1 );
 }
+
+[[FS_COPY]]
+uniform sampler2D buf0;
+varying vec2 texCoords;
+void main() { gl_FragColor = texture2D(buf0, texCoords); }
+
+[[FS_COPY_GL4]]
+uniform sampler2D buf0;
+in vec2 texCoords;
+out vec4 fragColor;
+void main() { fragColor = texture(buf0, texCoords); }
 
 
 [[FS_BRIGHTPASS]]
@@ -235,17 +268,26 @@ void main( void )
 uniform sampler2D buf0, buf1;
 uniform vec2 frameBufSize;
 uniform float hdrExposure;
+uniform float hdrBloomStrength;
 varying vec2 texCoords;
+
+vec3 acesFilm( vec3 color )
+{
+	const float a = 2.51;
+	const float b = 0.03;
+	const float c = 2.43;
+	const float d = 0.59;
+	const float e = 0.14;
+	return clamp( (color * (a * color + b)) / (color * (c * color + d) + e), 0.0, 1.0 );
+}
 
 void main( void )
 {
 	vec4 col0 = texture2D( buf0, texCoords );	// HDR color
 	vec4 col1 = texture2D( buf1, texCoords );	// Bloom
-	
-	// Tonemap (using photographic exposure mapping)
-	vec4 col = 1.0 - exp2( -hdrExposure * col0 );
-	
-	gl_FragColor = col + col1;
+	vec3 hdrColor = max( col0.rgb + col1.rgb * hdrBloomStrength, 0.0 ) * hdrExposure;
+	vec3 displayColor = pow( acesFilm( hdrColor ), vec3( 1.0 / 2.2 ) );
+	gl_FragColor = vec4( displayColor, col0.a );
 }
 
 [[FS_FINALPASS_GL4]]
@@ -254,17 +296,26 @@ void main( void )
 uniform sampler2D buf0, buf1;
 uniform vec2 frameBufSize;
 uniform float hdrExposure;
+uniform float hdrBloomStrength;
 in vec2 texCoords;
 
 out vec4 fragColor;
+
+vec3 acesFilm( vec3 color )
+{
+	const float a = 2.51;
+	const float b = 0.03;
+	const float c = 2.43;
+	const float d = 0.59;
+	const float e = 0.14;
+	return clamp( (color * (a * color + b)) / (color * (c * color + d) + e), 0.0, 1.0 );
+}
 
 void main( void )
 {
 	vec4 col0 = texture( buf0, texCoords );	// HDR color
 	vec4 col1 = texture( buf1, texCoords );	// Bloom
-	
-	// Tonemap (using photographic exposure mapping)
-	vec4 col = 1.0 - exp2( -hdrExposure * col0 );
-	
-	fragColor = col + col1;
+	vec3 hdrColor = max( col0.rgb + col1.rgb * hdrBloomStrength, 0.0 ) * hdrExposure;
+	vec3 displayColor = pow( acesFilm( hdrColor ), vec3( 1.0 / 2.2 ) );
+	fragColor = vec4( displayColor, col0.a );
 }

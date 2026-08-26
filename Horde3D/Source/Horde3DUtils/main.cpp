@@ -634,7 +634,7 @@ H3D_IMPL bool h3dutScreenshotRaw( unsigned char *rgb, int len_rgb )
 	// large enough to store each RGBA component as a *float* - *not* an
 	// unsinged char.
 	static vector<float> f32buf;
-	f32buf.reserve(width * height * 4);
+	f32buf.resize(width * height * 4);
 
 	// Determine the size of the pixel buffer in *bytes*. This is somewhat
 	// unintuitive because Horde returns each of the RGBA components as a
@@ -642,7 +642,7 @@ H3D_IMPL bool h3dutScreenshotRaw( unsigned char *rgb, int len_rgb )
 	const int num_bytes = width * height * 4 * sizeof(float);
 
 	// Copy the pixels (RGBA, float32) into the auxiliary buffer.
-	h3dGetRenderTargetData( 0, "", 0, 0x0, 0x0, 0x0, &f32buf[0], num_bytes);
+	h3dGetRenderTargetData( 0, "", 0, 0x0, 0x0, 0x0, f32buf.data(), num_bytes);
 
 	// Unpack the image from the auxiliary RGBA (float32) buffer into the user
 	// provide RGB (uint8) array.
@@ -666,9 +666,8 @@ H3D_IMPL bool h3dutScreenshot( const char *filename )
 	int width, height;
 	h3dGetRenderTargetData( 0, "", 0, &width, &height, 0x0, 0x0, 0 );
 
-	uint8 *pixelsF = new uint8[width * height * 4];
-	memset( pixelsF, 0, width * height * 4 );
-	h3dGetRenderTargetData( 0, "", 0, 0x0, 0x0, 0x0, pixelsF, width * height * 16 );
+	vector<float> pixelsF( width * height * 4 );
+	h3dGetRenderTargetData( 0, "", 0, 0x0, 0x0, 0x0, pixelsF.data(), width * height * 16 );
 	
 	// Convert to BGR8
 	unsigned char *pixels = new unsigned char[width * height * 3];
@@ -685,13 +684,12 @@ H3D_IMPL bool h3dutScreenshot( const char *filename )
 	{
 		for( int x = 0; x < width; ++x )
 		{
-			pixels[(y * width + x) * 3 + 0] = pixelsF[(y * width + x) * 4 + 2];
-			pixels[(y * width + x) * 3 + 1] = pixelsF[(y * width + x) * 4 + 1];
-			pixels[(y * width + x) * 3 + 2] = pixelsF[(y * width + x) * 4 + 0];
+			pixels[(y * width + x) * 3 + 0] = ftoi_r( clamp( pixelsF[(y * width + x) * 4 + 2], 0.f, 1.f ) * 255.f );
+			pixels[(y * width + x) * 3 + 1] = ftoi_r( clamp( pixelsF[(y * width + x) * 4 + 1], 0.f, 1.f ) * 255.f );
+			pixels[(y * width + x) * 3 + 2] = ftoi_r( clamp( pixelsF[(y * width + x) * 4 + 0], 0.f, 1.f ) * 255.f );
 		}
 	}
 //	memcpy( pixels, pixelsF, width * height * 3 );
-	delete[] pixelsF;
 	
 	char *image;
 	int imageSize;

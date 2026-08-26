@@ -141,6 +141,7 @@ struct RenderTarget
 	TextureFormats::List  format;
 	uint32                width, height;
 	uint32                samples;
+	uint32                maxMipLevel;
 	float                 scale;  // Scale factor for FB width and height
 	bool                  hasDepthBuf;
 	uint32                rendBuf;
@@ -152,6 +153,7 @@ struct RenderTarget
 		rendBuf = 0;
 		width = height = 0;
 		samples = 0;
+		maxMipLevel = 0;
 		scale = 0;
 		format = TextureFormats::Unknown;
 	}
@@ -220,7 +222,7 @@ private:
 
 	void addRenderTarget( const std::string &id, bool depthBuffer, uint32 numBuffers,
 	                      TextureFormats::List format, uint32 samples,
-	                      uint32 width, uint32 height, float scale );
+	                      uint32 width, uint32 height, float scale, uint32 maxMipLevel );
 	RenderTarget *findRenderTarget( const std::string &id ) const;
 	bool createRenderTargets();
 	void releaseRenderTargets();

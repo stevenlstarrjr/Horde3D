@@ -1,0 +1,5 @@
+<Material>
+	<Shader source="shaders/skybox_hdr.shader"/>
+	<Sampler name="albedoMap" map="models/skybox/skybox.dds" />
+	<Uniform name="hdrExposure" a="0.18" />
+</Material>
